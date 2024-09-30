@@ -1,6 +1,14 @@
-import { OrbitControls, Sparkles } from '@react-three/drei';
+import {
+	OrbitControls,
+	Sparkles,
+	Splat,
+	Text,
+	Text3D,
+	Trail,
+} from '@react-three/drei';
 import { Canvas, useFrame } from '@react-three/fiber';
 import { useRef } from 'react';
+import Scene from './Scene';
 
 function RotatingCube() {
 	const meshRef = useRef<any>();
@@ -47,23 +55,20 @@ function RotatingDonut() {
 }
 export default function App() {
 	return (
-		<Canvas
-			style={{
-				height: '100vh',
-				width: '100vw',
-				display: 'flex',
-				justifyContent: 'center',
-				alignItems: 'center',
-			}}
-		>
-			<OrbitControls enableZoom enablePan enableRotate />
-
-			<directionalLight position={[1, 1, 1]} intensity={10} color={0x9cdba6} />
-
-			<color attach={'background'} args={['#1f1f1f']} />
-
-			<RotatingCube />
-			<RotatingDonut />
-		</Canvas>
+		<>
+			<Canvas
+				style={{
+					height: '100vh',
+					width: '100vw',
+					display: 'flex',
+					justifyContent: 'center',
+					alignItems: 'center',
+				}}
+				camera={{ position: [0, 5, 5] }}
+			>
+				<color attach='background' args={['#000000']} />
+				<Scene />
+			</Canvas>
+		</>
 	);
 }
